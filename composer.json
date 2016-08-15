@@ -1,0 +1,34 @@
+{
+    "name": "lemonphp/http",
+    "type": "library",
+    "description": "An implemention of PSR-7",
+    "keyworks": ["http","psr-7","psr7"],
+    "license": "MIT",
+    "homepage": "https://github.com/lemonphp/http",
+    "support": {
+        "issues": "https://github.com/lemonphp/http/issues",
+        "source": "https://github.com/lemonphp/http"
+    },
+    "authors": [
+        {
+            "name": "Oanh Nguyen",
+            "email": "oanhnn.bk@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Lemon\\Http\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=5.5.9",
+        "psr/http-message": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.8|~5.0",
+        "squizlabs/php_codesniffer": "^2.5"
+    },
+    "config": {
+        "preferred-install": "dist"
+    }
+}
