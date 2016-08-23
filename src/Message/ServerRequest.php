@@ -3,7 +3,6 @@
 namespace Lemon\Http\Message;
 
 use Lemon\Http\Message\Request;
-use Lemon\Http\Message\Util;
 use Psr\Http\Message\ServerRequestInterface;
 
 /**

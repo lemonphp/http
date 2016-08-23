@@ -3,7 +3,7 @@
 namespace Lemon\Http\Message;
 
 use Lemon\Http\Message\Message;
-use Lemon\Http\Message\Util;
+use Lemon\Http\Util;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -29,12 +29,14 @@ class Response extends Message implements ResponseInterface
      * @var int
      */
     protected $status = 200;
+
     /**
      * Reason phrase
      *
      * @var string
      */
     protected $reasonPhrase = '';
+
     /**
      * Status codes and reason phrases
      *
@@ -108,7 +110,6 @@ class Response extends Message implements ResponseInterface
         511 => 'Network Authentication Required',
     ];
 
-
     /**
      * Create new HTTP response.
      *
@@ -118,9 +119,9 @@ class Response extends Message implements ResponseInterface
      */
     public function __construct($status = 200, array $headers = null, StreamInterface $body = null)
     {
-        $this->status = Util::normalizeHTTPStatusCode($status);
+        $this->status  = Util::normalizeHTTPStatusCode($status);
         $this->headers = $headers ? $headers : [];
-        $this->body = $body ? $body : new Body(fopen('php://temp', 'r+'));
+        $this->body    = $body ? $body : new Body(fopen('php://temp', 'r+'));
     }
 
     /**

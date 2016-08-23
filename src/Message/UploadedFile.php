@@ -78,11 +78,7 @@ class UploadedFile implements UploadedFileInterface
      */
     public static function createFromGlobals()
     {
-        if (isset($_FILES)) {
-            return static::parseUploadedFiles($_FILES);
-        }
-
-        return [];
+        return isset($_FILES) ? static::parseUploadedFiles($_FILES) : [];
     }
 
     /**
@@ -124,6 +120,7 @@ class UploadedFile implements UploadedFileInterface
                 }
             }
         }
+
         return $parsed;
     }
 
@@ -313,6 +310,6 @@ class UploadedFile implements UploadedFileInterface
      */
     public function getClientMediaType()
     {
-        return $this->size;
+        return $this->type;
     }
 }

@@ -4,6 +4,7 @@ namespace Lemon\Http\Message;
 
 use Lemon\Http\Message\Message;
 use Lemon\Http\Message\Body;
+use Lemon\Http\Util;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\UriInterface;
 

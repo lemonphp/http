@@ -1,6 +1,6 @@
 <?php
 
-namespace Lemon\Http\Message;
+namespace Lemon\Http;
 
 class Util
 {

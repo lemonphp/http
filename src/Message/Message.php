@@ -2,19 +2,23 @@
 
 namespace Lemon\Http\Message;
 
-use Lemon\Http\Message\Util;
+use Lemon\Http\Util;
 use Psr\Http\Message\MessageInterface;
 use Psr\Http\Message\StreamInterface;
 
 /**
- * Abstract message (base class for Request and Response)
+ * HTTP messages consist of requests from a client to a server and responses
+ * from a server to a client. This interface defines the methods common to
+ * each.
  *
- * This class represents a general HTTP message. It provides common properties and methods for
- * the HTTP request and response, as defined in the PSR-7 MessageInterface.
+ * Messages are considered immutable; all methods that might change state MUST
+ * be implemented such that they retain the internal state of the current
+ * message and return an instance that contains the changed state.
  *
- * @link https://github.com/php-fig/http-message/blob/master/src/MessageInterface.php
- * @see Lemon\Http\Message\Request
- * @see Lemon\Http\Message\Response
+ * @link http://www.ietf.org/rfc/rfc7230.txt
+ * @link http://www.ietf.org/rfc/rfc7231.txt
+ * @see \Lemon\Http\Message\Request
+ * @see \Lemon\Http\Message\Response
  */
 abstract class Message implements MessageInterface
 {
@@ -62,7 +66,8 @@ abstract class Message implements MessageInterface
     /**
      * Return an instance with the specified HTTP protocol version.
      *
-     * The version string MUST contain only the HTTP version number (e.g., "1.1", "1.0").
+     * The version string MUST contain only the HTTP version number (e.g.,
+     * "1.1", "1.0").
      *
      * This method MUST be implemented in such a way as to retain the
      * immutability of the message, and MUST return an instance that has the
@@ -87,23 +92,22 @@ abstract class Message implements MessageInterface
      * The keys represent the header name as it will be sent over the wire, and
      * each value is an array of strings associated with the header.
      *
-     * ```
-     * // Represent the headers as a string
-     * foreach ($message->getHeaders() as $name => $values) {
-     *    echo $name . ": " . implode(", ", $values);
-     * }
+     *     // Represent the headers as a string
+     *     foreach ($message->getHeaders() as $name => $values) {
+     *         echo $name . ": " . implode(", ", $values);
+     *     }
      *
-     * // Emit headers iteratively:
-     * foreach ($message->getHeaders() as $name => $values) {
-     *    foreach ($values as $value) {
-     *        header(sprintf('%s: %s', $name, $value), false);
-     *    }
-     * }
-     * ```
+     *     // Emit headers iteratively:
+     *     foreach ($message->getHeaders() as $name => $values) {
+     *         foreach ($values as $value) {
+     *             header(sprintf('%s: %s', $name, $value), false);
+     *         }
+     *     }
+     *
      * While header names are not case-sensitive, getHeaders() will preserve the
      * exact case in which headers were originally specified.
      *
-     * @return array Returns an associative array of the message's headers. Each
+     * @return string[][] Returns an associative array of the message's headers. Each
      *     key MUST be a header name, and each value MUST be an array of strings
      *     for that header.
      */
@@ -245,7 +249,7 @@ abstract class Message implements MessageInterface
     /**
      * Gets the body of the message.
      *
-     * @return \Psr\Http\Message\StreamInterface Returns the body as a stream.
+     * @return StreamInterface Returns the body as a stream.
      */
     public function getBody()
     {
